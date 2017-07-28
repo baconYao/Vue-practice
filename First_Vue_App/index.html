@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BaconYao-FirstVue</title>
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://unpkg.com/vue"></script>
+  
+</head>
+<body>
+  <div id='app'>
+    <input type="text" v-on:input="changeTitle">
+    <p v-once>{{ title }}</p>
+    <p>{{ sayHello() }} - <a v-bind:href="link">Google</a></p>
+    <hr>
+    <p v-html='finishedLink'></p>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        title: 'Hello world',
+        link: 'http://google.com',
+        finishedLink: '<a href="http://yahoo.com">Yahoo</a>'
+      },
+      methods: {
+        changeTitle: function(event) {
+          this.title = event.target.value;
+        },
+        sayHello: function() {
+          return this.title;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
