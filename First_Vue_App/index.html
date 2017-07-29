@@ -16,6 +16,7 @@
     <p>{{ sayHello() }} - <a v-bind:href="link">Google</a></p>
     <hr>
     <p v-html='finishedLink'></p>
+<<<<<<< HEAD
     <hr>
     <button v-on:click='increase(2, $event)'>click me</button>
     <p>{{ counter }}</p>
@@ -24,6 +25,8 @@
       - <span v-on:mousemove.stop>DEAD SPOT</span>  
     </p>
     <input type="text" v-on:keyup.enter.space="alertMe">
+=======
+>>>>>>> 61331816f923b5762847b2560434e6ba41d1b79b
   </div>
 
   <script>
@@ -32,10 +35,14 @@
       data: {
         title: 'Hello world',
         link: 'http://google.com',
+<<<<<<< HEAD
         finishedLink: '<a href="http://yahoo.com">Yahoo</a>',
         counter: 0,
         x: 0,
         y: 0
+=======
+        finishedLink: '<a href="http://yahoo.com">Yahoo</a>'
+>>>>>>> 61331816f923b5762847b2560434e6ba41d1b79b
       },
       methods: {
         changeTitle: function(event) {
@@ -43,6 +50,7 @@
         },
         sayHello: function() {
           return this.title;
+<<<<<<< HEAD
         },
         increase: function(step, event) {
           this.counter += step;
@@ -53,6 +61,8 @@
         },
         alertMe: function() {
           alert('Alert!');
+=======
+>>>>>>> 61331816f923b5762847b2560434e6ba41d1b79b
         }
       }
     });
