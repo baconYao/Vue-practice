@@ -24,6 +24,23 @@
       - <span v-on:mousemove.stop>DEAD SPOT</span>  
     </p>
     <input type="text" v-on:keyup.enter.space="alertMe">
+
+    <hr>
+    <input type="text" v-model="testName">
+    <p>{{ testName }}</p>
+
+    <hr>
+    <button v-on:click='counter2++'>counter2++</button>    
+    <button v-on:click='counter2--'>counter2--</button>    
+    <button v-on:click='counter3++'>counter3++</button> 
+    <p>Counter: {{ counter2 }} | {{ counter3 }}</p>
+    <p>Result: {{ result() }} | {{ output }}</p>
+    
+    <hr>
+    <!-- @ == v-on:  -->
+    <button @click='changeLink'>Click to hange Link</button>
+    <!-- : == v-bind:  -->
+    <a :href="link2">Link</a>
   </div>
 
   <script>
@@ -35,7 +52,25 @@
         finishedLink: '<a href="http://yahoo.com">Yahoo</a>',
         counter: 0,
         x: 0,
-        y: 0
+        y: 0,
+        testName: 'Max',
+        counter2: 0,
+        counter3: 0,
+        link2: 'http://facebook.com'
+      },
+      computed: {
+        output: function() {
+          console.log('Computed');
+          return this.counter2 > 5 ? 'Greater than 5' : 'Smaller than 5';      
+        }
+      },
+      watch: {
+        counter2: function(value) {
+          var vm = this;
+          setTimeout(function(){
+            vm.counter2 = 0;
+          }, 2000);
+        }
       },
       methods: {
         changeTitle: function(event) {
@@ -53,6 +88,13 @@
         },
         alertMe: function() {
           alert('Alert!');
+        },
+        result: function() {
+          console.log('Method');
+          return this.counter2 > 5 ? 'Greater than 5' : 'Smaller than 5';
+        },
+        changeLink: function() {
+          this.link2 = 'http://apple.com';
         }
       }
     });
