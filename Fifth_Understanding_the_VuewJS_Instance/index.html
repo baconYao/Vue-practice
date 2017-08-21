@@ -12,29 +12,40 @@
 <body>
   <div id="app1">
     <h1 ref="heading">{{ title }}</h1>
-    <button v-on:click="show">Show Paragraph</button>
+    <button v-on:click="show" ref="myButton">Show Paragraph</button>
     <p v-if="showParagraph">This is not always visible</p>
   </div>
 
   <div id="app2">
     <h1 ref="heading">{{ title }}</h1>
     <button v-on:click="onChange">Change something in Vue 1</button>
+    <hello></hello>
+    <hello></hello>
+  </div>
+
+  <div id="app3">
+
   </div>
 
   <script>
 
-    var data = {
+    var datas = {
       title: 'The VueJS Instance data',
       showParagraph: false
     };
 
+    Vue.component('hello', {
+      template: '<h1>Hello~~~</h1>'
+    });
+
     var vm1 = new Vue({
-      el: '#app1',
-      data: data,
+      data: datas,
       methods: {
         show: function() {
           this.showParagraph = true;
-          this.updateTitle('The VueJS Instance (Updated)');
+          this.updateTitle('The VueJS Instance (Updated by button)');
+          console.log(this.$refs);
+          this.$refs.myButton.innerText = 'Test';
         },
         updateTitle: function(title) {
           this.title = title;
@@ -52,7 +63,11 @@
       }
     });
 
-    console.log(vm1.$data === data);
+    vm1.$mount('#app1');
+
+    console.log(vm1.$data === datas);
+    vm1.$refs.heading.innerText = "Something else";
+
 
     setTimeout(function() {
       vm1.title = 'Changed by Timer';
@@ -70,6 +85,15 @@
       }
 
     });
+
+    var vm3 = new Vue({
+      template: '<h1>Hello!</h1>'
+    });
+
+    // vm3.$mount('#app3');       //與下面兩行功能相同
+    vm3.$mount();
+    document.getElementById('app3').appendChild(vm3.$el);
+
   </script>
 
 
