@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BaconYao-FirstVue</title>
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://unpkg.com/vue"></script>
+
+</head>
+<body>
+  <div id="app">
+    <my-cmp></my-cmp>
+    <my-cmp></my-cmp>
+  </div>
+
+
+  <script>
+    // var data = { status: 'Critical'};
+    
+    // Vue.component(my-cmp, {})
+    var cmp = {
+      data: function() {
+        return {
+          status: 'Critical'
+        };
+      },
+      template: '<p>Server Status: {{ status }} (<button @click="changeStatus">Change</button>) </p>',
+      methods: {
+        changeStatus: function() {
+          this.status = 'Normal';
+        }
+      }
+    };
+
+    new Vue({
+      el: '#app',
+      components: {
+        'my-cmp': cmp
+      }
+    });
+
+
+  </script>
+
+
+</body>
+</html>
